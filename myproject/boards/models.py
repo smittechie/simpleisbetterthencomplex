@@ -9,12 +9,14 @@ class Board(models.Model):
         return self.name
 
 class Topic(models.Model):
+    objects = None
     subject = models.CharField(max_length = 255)
     board = models.ForeignKey(Board,related_name ='topics',on_delete=models.PROTECT)
     starter = models.ForeignKey(User,related_name='topics',on_delete=models.PROTECT)
     last_updated = models.DateTimeField(auto_now_add=True)
 
 class Post(models.Model) :
+    objects = None
     message = models.TextField(max_length = 1000)
     topic = models.ForeignKey(Topic,related_name= 'posts',on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add = True)
