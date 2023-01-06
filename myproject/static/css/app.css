@@ -1,3 +1,8 @@
 .navbar-brand {
   font-family: 'Peralta', cursive;
 }
+
+
+.nav-flex-btn{
+    justify-content: flex-end !important;
+}
