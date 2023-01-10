@@ -1,3 +1,8 @@
+from django.contrib.auth.models import User
+from django.urls import reverse
+from testcase import TestCase
+
+
 class LoginRequiredPasswordChangeTests(TestCase):
     def test_redirection(self):
         url = reverse('password_change')

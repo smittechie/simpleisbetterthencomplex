@@ -1,59 +1,44 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
-  <head>
 
-    <meta charset="utf-8">
-    {% block title %}
-    {{ board.name }} - {{ block.super }}
-    {% endblock %}
+{% block title %}
+  {{ board.name }} - {{ block.super }}
+{% endblock %}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-  </head>
-  <body>
-  {% block breadcrumb %}
-    <div class="container-lg p-2 my-3 bg-dark text-white">
-      <ol class="breadcrumb my-4">
-        <li class="breadcrumb-item "><a href="{% url 'home'%}">Boards</a> </li>
-        <li class="breadcrumb-item active text-white">{{ board.name }}</li>
-      </ol>
-    </div>
-  {% endblock %}
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item active">{{ board.name }}</li>
+{% endblock %}
 
 {% block content %}
-
   <div class="mb-4">
-    <a href="{% url 'new_topic' board.pk %}" class=" btn btn-primary"> New topic </a>
+    <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
   </div>
 
   <table class="table">
-    <thead class="thead-inverse table-bordered table-hover">
-    <tr class="table-dark">
+    <thead class="thead-inverse">
+      <tr>
         <th>Topic</th>
         <th>Starter</th>
         <th>Replies</th>
         <th>Views</th>
         <th>Last Update</th>
-    </tr>
+      </tr>
     </thead>
     <tbody>
-    {% for topic in board.topics.all %}
+      {% for topic in topics %}
         <tr>
-          <td>{{ topic.subject }}</td>
+          <td><a href="{% url 'topic_posts' board.pk topic.pk %}">{{ topic.subject }}</a></td>
           <td>{{ topic.starter.username }}</td>
-          <td>0</td>
-          <td>0</td>
+          <td>{{ topic.replies }}</td>
+          <td>{{ topic.views }}</td>
           <td>{{ topic.last_updated }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 {% endblock %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  </body>
-</html>
+
 
 
 

@@ -1,6 +1,7 @@
 from django.urls import reverse, resolve
 from testcase import TestCase
 
+from boards.models import Board
 from boards.views import board_topics
 
 

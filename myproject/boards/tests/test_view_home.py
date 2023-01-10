@@ -1,9 +1,9 @@
-from turtle import home
 
 from django.test import TestCase
 from django.urls import reverse, resolve
 
 from boards.models import Board
+from boards.views import home
 
 
 class HomeTests(TestCase):
